@@ -1,29 +1,47 @@
 #include <vector>
+#include <fstream>
 
-#include "Moteur.h"
-#include "Image.h"
-#include "Personnage.h"
+#include "../include/Moteur.h"
+#include "../include/Image.h"
+#include "../include/Personnage.h"
+#include "../include/Avatar.h"
+#include "../include/Ennemi.h"
+#include "../include/Dictionnaire.h"
+#include "../include/Objet.h"
+#include "../include/Niveau.h"
 
 using namespace std;
 
 int main(int, char**) // Version special du main, ne pas modifier
 {
     // Initialisation du jeu
-    Moteur moteur("Mon super jeu vidéo");
+    Moteur moteur("Mon super jeu vidéo",6);
 
     // TODO: charger images, creer personnages, etc.
-    int y=0, x=0;
-
     Image image(moteur, "assets/fond.png");
     //Image coffreF(moteur, "assets/coffre_ferme.png");
     //Image coffreO(moteur, "assets/coffre_ouvert.png");
     Image skin(moteur, "assets/personnages.png");
+    Image objet(moteur, "assets/objets.png");
+    Image perdue(moteur, "assets/gameover.png");
+    Image gagne(moteur, "assets/bravo.png");
 
-    Personnage Hero(skin,4,0,0,0);
-    Personnage Ennemie1(skin,10,0,5*TAILLE_CASE,TAILLE_CASE);
-    Personnage Ennemie2(skin,7,4,TAILLE_CASE,5*TAILLE_CASE);
+    Avatar Chevalier(skin,4,0,1,2);
+    Ennemi Ennemie1(skin,10,0,5,2);
+    Ennemi Ennemie2(skin,7,4,1,5,DROITE);
+
+    Dictionnaire dictionnaire("assets/dictionnaire.txt");
+    dictionnaire.afficher();
+
+    Niveau niv1(objet,"assets/niveau.txt",dictionnaire);
+    /*
+    dictionnaire.recherche(test, "Patate");
+    test.afficher();
+    */
+
 
     bool quitter = false;
+    bool Mort = false;
     //bool coffre = false;
     //bool monte = false;
     //bool cote = false;
@@ -46,31 +64,35 @@ int main(int, char**) // Version special du main, ne pas modifier
 
             // TODO: gerer les autres evenements
             case ESPACE_APPUYE:
-                /*
-                coffre = true;
-                break;
-                */
+            /*
+            coffre = true;
+            break;
+            */
 
             case ESPACE_RELACHE:
-                /*
-                coffre = false;
-                break;
-                */
+            /*
+            coffre = false;
+            break;
+            */
 
             case GAUCHE_APPUYE:
-                Hero.regarderGauche();
+                //Chevalier.regarderGauche();
+                Chevalier.allerGauche(niv1);
                 break;
 
             case DROITE_APPUYE:
-                Hero.regarderDroite();
+                //Chevalier.regarderDroite();
+                Chevalier.allerDroite(niv1);
                 break;
 
             case HAUT_APPUYE:
-                Hero.regarderHaut();
+                //Chevalier.regarderHaut();
+                Chevalier.allerHaut(niv1);
                 break;
 
             case BAS_APPUYE:
-                Hero.regarderBas();
+                //Chevalier.regarderBas();
+                Chevalier.allerBas(niv1);
                 break;
 
 
@@ -102,16 +124,44 @@ int main(int, char**) // Version special du main, ne pas modifier
         if(x<0)
             cote = false;
         */
+        if(moteur.animationsAmettreAjour())
+        {
+            Ennemie1.avancer(niv1);
+            Ennemie2.avancer(niv1);
+            Chevalier.mettreAjourAnimation();
+            Ennemie1.mettreAjourAnimation();
+            Ennemie2.mettreAjourAnimation();
+        }
+
+        Mort=(Chevalier.touche(Ennemie1)||Chevalier.touche(Ennemie2));
+
+        if(Mort)
+        {
+            moteur.initialiserRendu();
+            perdue.dessiner(LARGEUR_FENETRE/6, HAUTEUR_FENETRE/6);
+            moteur.finaliserRendu();
+            moteur.attendre(2);
+            quitter = true;
+        }
+        if(niv1.gagne())
+        {
+            moteur.initialiserRendu();
+            gagne.dessiner(LARGEUR_FENETRE/6, HAUTEUR_FENETRE/6);
+            moteur.finaliserRendu();
+            moteur.attendre(2);
+            quitter = true;
+        }
 
 
         // III. Generation de l'image à afficher
 
         moteur.initialiserRendu(); // efface ce qui avait ete affiche precedemment et reinitalise en ecran noir
 
-        image.dessiner(0,0);
-        Hero.dessiner();
+        niv1.dessiner();
+        Chevalier.dessiner();
         Ennemie1.dessiner();
         Ennemie2.dessiner();
+
         /*
         if(coffre)
         {

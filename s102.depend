@@ -1,30 +1,99 @@
 # depslib dependency file v1.0
-1762415364 source:z:\cpp\projet\s102\src\image.cpp
+1771406248 source:c:\users\nafakir\downloads\s102_corrige\s102_corrige\src\avatar.cpp
+	<iostream>
+	"Avatar.h"
+
+1771406248 source:c:\users\nafakir\downloads\s102_corrige\s102_corrige\src\dictionnaire.cpp
+	<iostream>
+	<fstream>
+	"../include/Tuile.h"
+	"../include/Dictionnaire.h"
+
+1771406248 c:\users\nafakir\downloads\s102_corrige\s102_corrige\include\tuile.h
+	<fstream>
+
+1771406248 c:\users\nafakir\downloads\s102_corrige\s102_corrige\include\dictionnaire.h
+	<vector>
+	"Tuile.h"
+
+1771406248 source:c:\users\nafakir\downloads\s102_corrige\s102_corrige\src\ennemi.cpp
+	<iostream>
+	"../include/Moteur.h"
+	"Ennemi.h"
+
+1771406248 c:\users\nafakir\downloads\s102_corrige\s102_corrige\include\moteur.h
+	<iostream>
+	<SDL.h>
+
+1771406248 source:c:\users\nafakir\downloads\s102_corrige\s102_corrige\src\image.cpp
 	<SDL_image.h>
 	<exception>
 	"Image.h"
 
-1762414956 source:z:\cpp\projet\s102\src\moteur.cpp
-	<SDL_image.h>
-	"Moteur.h"
-
-1764344943 source:z:\cpp\projet\s102\src\main.cpp
+1771406248 source:c:\users\nafakir\downloads\s102_corrige\s102_corrige\src\main.cpp
 	<vector>
+	<fstream>
+	"../include/Moteur.h"
+	"../include/Image.h"
+	"../include/Personnage.h"
+	"../include/Avatar.h"
+	"../include/Ennemi.h"
+	"../include/Dictionnaire.h"
+	"../include/Objet.h"
+	"../include/Niveau.h"
+
+1771406248 c:\users\nafakir\downloads\s102_corrige\s102_corrige\include\image.h
+	<memory>
 	"Moteur.h"
-	"Image.h"
 
-1765550127 source:z:\s102\src\image.cpp
-	<SDL_image.h>
-	<exception>
+1771406248 c:\users\nafakir\downloads\s102_corrige\s102_corrige\include\personnage.h
 	"Image.h"
+	"Niveau.h"
 
-1765550127 source:z:\s102\src\main.cpp
+1771406248 c:\users\nafakir\downloads\s102_corrige\s102_corrige\include\niveau.h
+	"Image.h"
+	"Objet.h"
+	"Dictionnaire.h"
 	<vector>
-	"Moteur.h"
+
+1771406248 c:\users\nafakir\downloads\s102_corrige\s102_corrige\include\objet.h
 	"Image.h"
+	"Tuile.h"
+	"Dictionnaire.h"
+	<fstream>
+
+1771406248 c:\users\nafakir\downloads\s102_corrige\s102_corrige\include\avatar.h
+	"Personnage.h"
+	"Ennemi.h"
+
+1771406248 c:\users\nafakir\downloads\s102_corrige\s102_corrige\include\ennemi.h
 	"Personnage.h"
 
-1765550127 source:z:\s102\src\moteur.cpp
+1771406248 source:c:\users\nafakir\downloads\s102_corrige\s102_corrige\src\moteur.cpp
 	<SDL_image.h>
 	"Moteur.h"
+
+1771406248 source:c:\users\nafakir\downloads\s102_corrige\s102_corrige\src\niveau.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	"../include/Objet.h"
+	"../include/Dictionnaire.h"
+	"../include/Image.h"
+	"../include/Niveau.h"
+
+1771406248 source:c:\users\nafakir\downloads\s102_corrige\s102_corrige\src\objet.cpp
+	<iostream>
+	"../include/Objet.h"
+	"../include/Moteur.h"
+
+1771406248 source:c:\users\nafakir\downloads\s102_corrige\s102_corrige\src\personnage.cpp
+	<iostream>
+	"../include/Personnage.h"
+	"../include/Moteur.h"
+
+1771406248 source:c:\users\nafakir\downloads\s102_corrige\s102_corrige\src\tuile.cpp
+	<iostream>
+	<fstream>
+	"../include/Tuile.h"
 
